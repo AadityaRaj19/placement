@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+void subseq(int n,vector<int> &k,vector<int> &arr,int sum,int sumi)
+{   
+    if(n==arr.size()){
+        if(sumi==sum){
+            for(auto it:k)cout<<it;
+              cout<<endl;
+        }
+        return;
+    }
+    sumi+=arr[n];
+    k.push_back(arr[n]);
+    subseq(n+1,k,arr,sum,sumi);
+    sumi-=arr[n];
+    k.pop_back();
+    subseq(n+1,k,arr,sum,sumi);
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> arr;
+    for(int i=0;i<3;i++)
+    {
+    int j;
+    cin>>j;
+    arr.push_back(j);
+    }
+    vector<int> k={};
+    subseq(0,k,arr,n,0);
+    return 0;
+}
